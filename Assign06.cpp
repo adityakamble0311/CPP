@@ -2,30 +2,41 @@
 #include<map>
 #include<string>
 using namespace std;
-int main()
-{
-typedef map<string,int> mapType;
-mapType pm;
-pm.insert(pair<string, int>("Maharashtra", 7026357));
-pm.insert(pair<string, int>("Rajasthan", 6578936));
-pm.insert(pair<string, int>("Karanataka", 6678993));
-pm.insert(pair<string, int>("Punjab", 5789032));
-pm.insert(pair<string, int>("West Bengal", 6676291));
-mapType::iterator iter;
-cout<<" _____________________________________________________\n";
-cout<<"|___________Population of states in India_____________|\n";
-cout<<"|_____________________________________________________|\n";
-cout<<"\n Size of populationMap :"<<pm.size()<<"\n";
 
-string state_name;
-cout<<"\n Enter name of the state :";
-cin>>state_name;
-
-iter = pm.find(state_name);
-if( iter!= pm.end() )
- cout<<state_name<<" 's population is "<<iter->second ;
-else
-cout<<"Key is not populationMap"<<"\n";
-pm.clear();
+int main(){
+	
+	typedef map<string,int>mapType;
+	
+	mapType mp;
+	string state,enter_state;
+	int state_count,pop;
+	
+	cout<<"Enter a Number of State :";
+	cin>>state_count;
+	
+	for(int i=0; i<state_count;i++){
+		cout<<"\nEnter The State :";
+		cin>>state;
+		
+		cout<<"\nEnter The Populations :";
+		cin>>pop;
+		
+		mp.insert(pair<string,int>(state,pop));
+	}
+	mapType ::iterator iter;
+	
+	
+	cout<<"\nEnter a State to check the population's' : ";
+	cin>>enter_state;
+	
+	iter = mp.find(enter_state);
+	if(iter!=mp.end()){
+		
+		cout<<enter_state<<" population's "<<iter->second<<endl;
+	}else{
+		cout<<"Key is Not Found"<<endl;
+		mp.clear();
+	}
+	
+	
 }
-
