@@ -1,58 +1,49 @@
-#include <SFML/graphics.hpp>
-#include <cmath>
-
-const double PI = 3.14159265358979323846;
-
-sf::Vector2f rotate(const sf::Vector2f& v, double angle) {
-    double rad = angle * PI / 180.0;
-    return sf::Vector2f(v.x * cos(rad) - v.y * sin(rad), v.x * sin(rad) + v.y * cos(rad));
+#include <iostream>
+#include <math.h>
+#include <graphics.h>
+using namespace std;
+class kochCurve
+{
+public:
+void koch(int it,int x1,int y1,int x5,int y5)
+{
+int x2,y2,x3,y3,x4,y4;
+int dx,dy;
+if (it==0)
+{
+line(x1,y1,x5,y5);
 }
-
-void drawKochLine(sf::RenderWindow& window, sf::Vector2f start, sf::Vector2f end, int depth) {
-    if (depth == 0) {
-        sf::Vertex line[] = {start, end};
-        window.draw(line, 2, sf::Lines);
-    } else {
-        sf::Vector2f delta = (end - start) / 3.0f;
-        sf::Vector2f p1 = start + delta;
-        sf::Vector2f p2 = start + delta + rotate(delta, 60);
-        sf::Vector2f p3 = start + 2.0f * delta;
-        
-        drawKochLine(window, start, p1, depth - 1);
-        drawKochLine(window, p1, p2, depth - 1);
-        drawKochLine(window, p2, p3, depth - 1);
-        drawKochLine(window, p3, end, depth - 1);
-    }
+else
+{
+delay(10);
+dx=(x5-x1)/3;
+dy=(y5-y1)/3;
+x2=x1+dx;
+y2=y1+dy;
+x3=(int)(0.5*(x1+x5)+sqrt(3)*(y1-y5)/6);
+y3=(int)(0.5*(y1+y5)+sqrt(3)*(x5-x1)/6);
+x4=2*dx+x1;
+y4=2*dy+y1;
+koch(it-1,x1,y1,x2,y2);
+koch(it-1,x2,y2,x3,y3);
+koch(it-1,x3,y3,x4,y4);
+koch(it-1,x4,y4,x5,y5);
 }
-
-int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Koch Snowflake");
-
-    int depth;
-    std::cout << "Enter the depth of recursion: ";
-    std::cin >> depth;
-
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-        }
-
-        window.clear();
-        
-        sf::Vector2f p1(100, 500);
-        sf::Vector2f p2(400, 100);
-        sf::Vector2f p3(700, 500);
-
-        drawKochLine(window, p1, p2, depth);
-        drawKochLine(window, p2, p3, depth);
-        drawKochLine(window, p3, p1, depth);
-
-        window.display();
-    }
-
-    return 0;
+}
+};
+int main()
+{
+kochCurve k;
+int it;
+cout<<"Enter Number Of Iterations : "<<endl;
+cin>>it;
+int gd=DETECT,gm;
+initgraph(&gd,&gm,NULL);
+k.koch(it,150,20,20,280);
+k.koch(it,280,280,150,20);
+k.koch(it,20,280,280,280);
+getch();
+closegraph();
+return 0;
 }
 
