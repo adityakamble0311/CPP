@@ -8,18 +8,18 @@ void drawDDALine(int x1, int y1, int x2, int y2) {
     dx = x2 - x1;
     dy = y2 - y1;
 
-    // Determine the number of steps to be taken
+    
     steps = (abs(dx) > abs(dy)) ? abs(dx) : abs(dy);
 
-    // Calculate the increment in x and y for each step
+    
     xIncrement = dx / static_cast<float>(steps);
     yIncrement = dy / static_cast<float>(steps);
 
-    // Initial coordinates
+    
     x = x1;
     y = y1;
 
-    // Draw the line
+   
     for (int i = 0; i <= steps; ++i) {
         putpixel(static_cast<int>(x), static_cast<int>(y), WHITE);
         x += xIncrement;
