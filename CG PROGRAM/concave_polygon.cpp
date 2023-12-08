@@ -25,17 +25,16 @@ class poly
 void poly::read()
 {
  int i;
- cout<<"\n Scan Fill Algorithm ";
- cout<<"\n Enter Number Of Vertices Of Polygon: ";
+ cout<<"\nEnter Number Of Vertices Of Polygon: ";
  cin>>v;
  if(v>2)
  {
- for(i=0;i<v; i++) //ACCEPT THE VERTICES
+ for(i=0;i<v; i++) 
  {
  cout<<"\nEnter co-ordinate no "<<i+1<<" : ";
- cout<<"\n\tx"<<(i+1)<<"=";
+ cout<<"\nx"<<(i+1)<<"=";
  cin>>p[i].x;
- cout<<"\n\ty"<<(i+1)<<"=";
+ cout<<"\ny"<<(i+1)<<"=";
  cin>>p[i].y;
  }
  p[i].x=p[0].x;
@@ -67,10 +66,10 @@ void poly::display()
  float s,s2;
  do
  {
- cout<<"\n\nMENU:";
- cout<<"\n\n\t1 . Scan line Fill ";
- cout<<"\n\n\t2 . Exit ";
- cout<<"\n\nEnter your choice:";
+ cout<<"\n--------------MENU-----------------";
+ cout<<"\n1 . Scan line Fill ";
+ cout<<"\n2 . Exit ";
+ cout<<"\nEnter your choice:";
  cin>>ch1;
  switch(ch1)
  {
@@ -125,7 +124,7 @@ void poly::ints(float z)
  }
  }
 }
-void poly::sort(int z) // sorting
+void poly::sort(int z) 
 {
  int temp,j,i;
  for(i=0;i<v;i++)
@@ -139,7 +138,7 @@ void poly::sort(int z) // sorting
  line(inter[i],z,inter[i+1],z);
  }
 }
-int main() //main
+int main() 
 {
  int cl;
  initwindow(500,600);
@@ -148,12 +147,12 @@ int main() //main
  x.read();
  x.calcs();
  cleardevice();
- cout<<"\n\tEnter The Color You Want :(In Range 0 To 15 )->"; //selecting color
+ cout<<"\nEnter The Color You Want :(In Range 0 To 15 )->";
  cin>>cl;
  setcolor(cl);
  x.display();
 
- closegraph(); //closing graph
+ closegraph(); 
  getch();
  return 0;
 }
